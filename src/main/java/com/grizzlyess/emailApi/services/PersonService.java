@@ -21,9 +21,22 @@ public class PersonService {
 
     public Person create(String firstName, String lastName, DepartmentType department) {
 
+        
         String email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department.toString().toLowerCase() + ".com";
         String password = UUID.randomUUID().toString().substring(0, 8);
         Person person = new Person(firstName, lastName, department, email, password);
+        log.info("Person created: " + person.toString());
+        return personRepository.save(person);
+        
+    }
+
+    public Person updatePassword(UUID id, String password, String newPassword) {
+        Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found"));
+        if (!person.getPassword().equals(password)) {
+            throw new RuntimeException("Incorrect password");
+        }
+        person.setPassword(newPassword);
+        log.info("Password updated for person: " + person.toString());
         return personRepository.save(person);
     }
 

@@ -36,18 +36,22 @@ public class Person {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "mailbox_capacity", nullable = false)
+    private Integer mailboxCapacity;
     
     
     protected Person() {
 
     }
 
-    public Person(String firstName, String lastName, DepartmentType department, String email, String password) {
+    public Person(String firstName, String lastName, DepartmentType department, String email, String password, Integer mailboxCapacity) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
         this.email = email;
         this.password = password;
+        this.mailboxCapacity = mailboxCapacity;
     }
 
 
@@ -97,6 +101,14 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getMailboxCapacity() {
+        return mailboxCapacity;
+    }
+
+    public void setMailboxCapacity(Integer mailboxCapacity) {
+        this.mailboxCapacity = mailboxCapacity;
     }
 
     @Override
