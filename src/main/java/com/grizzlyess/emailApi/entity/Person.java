@@ -2,8 +2,12 @@ package com.grizzlyess.emailApi.entity;
 
 import java.util.UUID;
 
+import com.grizzlyess.emailApi.enums.DepartmentType;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,6 +27,10 @@ public class Person {
     @Column(name = "last_name", nullable = false)   
     private String lastName;
 
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "department", nullable = false)
+    private DepartmentType department;
+
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -34,9 +42,10 @@ public class Person {
 
     }
 
-    public Person(String firstName, String lastName, String email, String password) {
+    public Person(String firstName, String lastName, DepartmentType department, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.department = department;
         this.email = email;
         this.password = password;
     }
@@ -64,6 +73,14 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public DepartmentType getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentType department) {
+        this.department = department;
     }
 
     public String getEmail() {
