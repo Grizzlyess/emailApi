@@ -63,9 +63,6 @@ public class PersonService {
     public Person updatePassword(String email, String password, String newPassword) {
 
         Person person = personRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Person not found"));
-        if (personRepository.existsByEmail(email)) {
-            throw new RuntimeException("Person not found");
-        }
         if (!person.getPassword().equals(password)) {
             throw new RuntimeException("Incorrect password");
         }
@@ -74,6 +71,13 @@ public class PersonService {
         return personRepository.save(person);
     }
 
+
+    public Person updateMailBoxCapacity(String email, int capacity){
+        Person person = personRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Person not found"));
+        person.setMailboxCapacity(capacity);
+        log.info("New capacity: " + capacity);
+        return personRepository.save(person);
+    }
     
 
 }
