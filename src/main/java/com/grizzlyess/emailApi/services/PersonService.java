@@ -80,4 +80,15 @@ public class PersonService {
     }
     
 
+    public Person alternateEmail(String email, String newEmail){
+        Person person = personRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Person not found"));
+        if (email.equals(newEmail)) {
+            throw new RuntimeException("Alternate Email can't be equal to Principal Email!");
+        }
+        person.setAlternateEmail(newEmail);
+        log.info("Alternate Email: " + newEmail);
+        return personRepository.save(person);
+
+    }
+
 }

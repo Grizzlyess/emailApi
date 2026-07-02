@@ -34,6 +34,9 @@ public class Person {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "alternate_email")
+    private String alternateEmail;
+
     @Column(name = "password", nullable = false)
     private String password;
 
@@ -91,6 +94,14 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAlternateEmail() {
+        return alternateEmail;
+    }
+
+    public void setAlternateEmail(String alternateEmail) {
+        this.alternateEmail = alternateEmail;
     }
 
     public String getPassword() {
