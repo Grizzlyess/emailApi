@@ -45,13 +45,11 @@ public class Person {
 
     }
 
-    public Person(String firstName, String lastName, DepartmentType department, String email, String password, Integer mailboxCapacity) {
+    public Person(String firstName, String lastName,  String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.department = department;
         this.email = email;
         this.password = password;
-        this.mailboxCapacity = mailboxCapacity;
     }
 
 
